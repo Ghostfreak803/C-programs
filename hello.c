@@ -45,16 +45,15 @@ void insert_node(Node *h, int data)
 {
     Node *tempnode = malloc(sizeof *tempnode);
     tempnode->data = data;
-    while(h != NULL)
+    tempnode->next = NULL;
+
+    while(h->next != NULL)
     {
-        if (tempnode->data >= h->data)
-        {
-            tempnode->next = h->next;
-            h->next = tempnode;
-            return;
-        }
         h = h->next;
     }
+
+    h->next = tempnode;
+    tempnode->prev = h;
 }
 
 int main(int argc, char const *argv[])
@@ -71,6 +70,7 @@ int main(int argc, char const *argv[])
 
     Node *head = malloc(sizeof *head);
     head->next = NULL;
+    head->prev = NULL;
 
     for (int i = 0; i < n; ++i)
     {
@@ -87,7 +87,7 @@ int main(int argc, char const *argv[])
     }
 
     print_node_forward(head);
-    // print_node_reverse(head);
+    print_node_reverse(head);
 
     return 0;
 }
