@@ -51,6 +51,7 @@ void insert_node(Node *h, int data)
         {
             tempnode->next = h->next;
             h->next = tempnode;
+            return;
         }
         h = h->next;
     }
